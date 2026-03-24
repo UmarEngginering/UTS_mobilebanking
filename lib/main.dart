@@ -23,7 +23,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7F9),
-      // 1. APPBAR
       appBar: AppBar(
         backgroundColor: const Color(0xFF014A94),
         elevation: 0,
@@ -47,10 +46,10 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(width: 10),
         ],
       ),
-      // 2. BODY (BAGIAN SALDO UNTUK COMMIT 3)
       body: SingleChildScrollView(
         child: Column(
           children: [
+            
             Stack(
               clipBehavior: Clip.none,
               children: [
@@ -62,14 +61,12 @@ class HomeScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10, offset: const Offset(0, 5))
-                      ],
+                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10)],
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text("Saldo Rekening", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500)),
+                        const Text("Saldo Rekening", style: TextStyle(color: Colors.grey)),
                         const Text("Rp 5.430.000", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF014A94))),
                       ],
                     ),
@@ -77,9 +74,48 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
+
+            const SizedBox(height: 30), 
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: GridView.count(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisCount: 4,
+                mainAxisSpacing: 25,
+                children: [
+                  tombolMenuUmar(Icons.swap_horiz_rounded, "Transfer", Colors.blue),
+                  tombolMenuUmar(Icons.qr_code_scanner_rounded, "QRIS", Colors.orange),
+                  tombolMenuUmar(Icons.phone_android_rounded, "Pulsa", Colors.green),
+                  tombolMenuUmar(Icons.account_balance_wallet_rounded, "BRIVA", Colors.red),
+                  tombolMenuUmar(Icons.account_balance_rounded, "Setor Tunai", Colors.indigo),
+                  tombolMenuUmar(Icons.wallet_rounded, "Dompet", Colors.purple),
+                  tombolMenuUmar(Icons.receipt_long_rounded, "Tagihan", Colors.amber),
+                  tombolMenuUmar(Icons.grid_view_rounded, "Lainnya", Colors.blueGrey),
+                ],
+              ),
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget tombolMenuUmar(IconData ikon, String teks, Color warnaDasar) {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: warnaDasar.withOpacity(0.1), 
+            shape: BoxShape.circle
+          ),
+          child: Icon(ikon, color: warnaDasar, size: 28),
+        ),
+        const SizedBox(height: 8),
+        Text(teks, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500)),
+      ],
     );
   }
 }
