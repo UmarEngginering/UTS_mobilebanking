@@ -49,7 +49,6 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            
             Stack(
               clipBehavior: Clip.none,
               children: [
@@ -61,12 +60,12 @@ class HomeScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10)],
+                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10, offset: const Offset(0, 5))],
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text("Saldo Rekening", style: TextStyle(color: Colors.grey)),
+                        const Text("Saldo Rekening", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500)),
                         const Text("Rp 5.430.000", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF014A94))),
                       ],
                     ),
@@ -74,9 +73,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-
-            const SizedBox(height: 30), 
-
+            const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: GridView.count(
@@ -96,6 +93,42 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 25),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              height: 110,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF014A94), Color(0xFF00AEEF)],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                ),
+              ),
+              child: const Center(
+                child: Text("Cashback 20% Pakai QRIS!", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Aktivitas Terakhir", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                      TextButton(onPressed: () {}, child: const Text("Lihat Semua", style: TextStyle(fontSize: 12))),
+                    ],
+                  ),
+                  riwayatDuitUmar("Kirim ke Ahmad", "24 Maret 2026", "- Rp 150.000", Colors.red),
+                  riwayatDuitUmar("Transfer Masuk", "23 Maret 2026", "+ Rp 1.000.000", Colors.green),
+                  riwayatDuitUmar("Bayar Listrik", "22 Maret 2026", "- Rp 215.000", Colors.red),
+                ],
+              ),
+            ),
+            const SizedBox(height: 30),
           ],
         ),
       ),
@@ -107,15 +140,37 @@ class HomeScreen extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            color: warnaDasar.withOpacity(0.1), 
-            shape: BoxShape.circle
-          ),
+          decoration: BoxDecoration(color: warnaDasar.withOpacity(0.1), shape: BoxShape.circle),
           child: Icon(ikon, color: warnaDasar, size: 28),
         ),
         const SizedBox(height: 8),
         Text(teks, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500)),
       ],
+    );
+  }
+
+  Widget riwayatDuitUmar(String judul, String tanggal, String jumlah, Color warnaNominal) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        color: Colors.white, 
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey.shade200)
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(judul, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+              Text(tanggal, style: const TextStyle(color: Colors.grey, fontSize: 11)),
+            ],
+          ),
+          Text(jumlah, style: TextStyle(color: warnaNominal, fontWeight: FontWeight.bold, fontSize: 13)),
+        ],
+      ),
     );
   }
 }
