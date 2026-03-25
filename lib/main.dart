@@ -132,6 +132,19 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: const Color(0xFF014A94),
+        unselectedItemColor: Colors.grey,
+        currentIndex: 0,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.history_rounded), label: "Mutasi"),
+          BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner_rounded, size: 32), label: "Bayar"),
+          BottomNavigationBarItem(icon: Icon(Icons.mail_outline_rounded), label: "Pesan"),
+          BottomNavigationBarItem(icon: Icon(Icons.person_outline_rounded), label: "Akun"),
+        ],
+      ),
     );
   }
 
